@@ -137,7 +137,7 @@ Int Fa 0/7
   switchport mode access
   switchport voice vlan 100 
   mls qos trust device cisco-phone 
- switchoprt access vlan 1
+ switchport access vlan 1
  end
 
 !IP CAMERAS NEED MAC ADDRESS RESERVATION FOR FIXED IP  (LINE 144 to 151 PASTE TO COREBABA)
@@ -388,8 +388,8 @@ end
 
 !How to Static Route windows Server:
 cmd
-route  add   10.0.0.0   mask   255.0.0.0    10._.1.4
-route  add  200.0.0.0   mask  255.255.255.0   10._.1.4
+route  add   10.0.0.0   mask   255.0.0.0    10.31.1.4
+route  add  200.0.0.0   mask  255.255.255.0   10.31.1.4
 
 ********************************************
 
@@ -552,4 +552,3 @@ exit
           
 sip-ua
 sip-server ipv4:192.168.k.1
-
