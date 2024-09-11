@@ -112,7 +112,9 @@ do sh ip route static
 
 p2:
 config T
-ip route 0.0.0.0  0.0.0.0 10.2.1.2
+ip route 0.0.0.0  0.0.0.0 10.2.1.2 1
+ip route 0.0.0.0  0.0.0.0 10.2.1.1 2
+
 do sh ip route static
 
 D1:
@@ -168,6 +170,13 @@ router eigrp 100
  network 10.1.4.4 0.0.0.3
  end
 
+!How to check if EIGRP is working properly
+show ip protocols
+show ip eigrp neighbors --> super important, meron kapitbahay
+show ip eigrp topology
+show ip eigrp traffic
+show ip route eigrp
+
 !!Multi Area OSPF FOR nETWOR eNGINEERS:
 OSPF NETWORK:
 R4:
@@ -212,6 +221,18 @@ OSPF checking:
 sh ip protocols
 sh ip ospf neighbor
 sh ip ospf database
+
+!Declaring link betweek R3 and R4 as P2P 
+R3:
+conf t
+int e1/2
+ip ospf network point-to-point
+
+R4:
+conf t
+int e1/2
+ip ospf network point-to-point
+
 
 Task3: Eigrp and Ospf Redistribution:
 R4: sikat: Eigrp and OSPF world:
