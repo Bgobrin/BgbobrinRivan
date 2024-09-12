@@ -1,0 +1,147 @@
+ip access-list ext bantayweb1
+permit tcp any host www.web8.com eq 80 log
+permit tcp any host www.web8.com eq 443 log
+permit tcp any host www.web8.com eq 22 log
+permit tcp any host www.web8.com eq 53 log
+
+int g 3
+ip access-group bantayweb1 in
+do sho ip access-l bantayweb1
+
+-------------------------------
+
+ip access-list ext blueteam2
+permit tcp any host www.web8.com eq 53 log
+permit tcp any host www.web8.com eq 22 log
+permit tcp any host www.web8.com eq 80 log
+permit tcp any host www.web9.com eq 23 log
+permit tcp any host www.web9.com eq 22 log
+permit tcp any host www.web9.com eq 443 log
+
+int g 3
+ip access-group blueteam2 in 
+do sho ip access-l blueteam2
+
+-------------------------------
+
+ip access-list ext blueteam3
+permit tcp any host www.web8.com eq 23 log
+permit tcp any host www.web8.com eq 22 log
+permit tcp any host www.web8.com eq 53 log
+permit tcp any host www.web8.com eq 80 log
+permit icmp any host www.web9.com log
+permit tcp any host www.web9.com eq 443 log
+
+int g 3
+ip access-group blueteam3 in 
+do sho ip access-l blueteam3
+
+-------------------------------
+
+ip access-list ext blueteam4
+permit tcp any host www.web8.com eq 19 log
+permit tcp any host www.web8.com eq 13 log
+permit tcp any host www.web8.com eq 79 log
+permit tcp any host www.web8.com eq 53 log
+permit icmp any host www.web9.com log
+permit tcp any host www.web9.com eq 53 log
+permit tcp any host www.web9.com eq 8080 log
+
+int g 3
+ip access-group blueteam4 in 
+do sho ip access-l blueteam4
+
+
+--------------------------------
+
+IPV6 Config
+
+conf t
+ipv6 unicast-r
+int loopback 1
+ipv6 add fafa:caca:dada:bebe::1/73
+int loopback 2
+ipv6 add fafa:caca:dada:bebe:0080:1/73
+int loopback 3
+ipv6 add fafa:caca:dada:bebe:0100:1/73
+int loopback 4
+ipv6 add fafa:caca:dada:bebe:0180:1/73
+int loopback 5
+ipv6 add fafa:caca:dada:bebe:0200:1/73
+int loopback 6
+ipv6 add fafa:caca:dada:bebe:0280:1/73
+int loopback 7
+ipv6 add fafa:caca:dada:bebe:0300:1/73
+int loopback 8
+ipv6 add fafa:caca:dada:bebe:0380:1/73
+
+conf t
+ipv6 unicast-r
+int loopback 1
+ipv6 add face:cafe:face:cafe::1/77
+int loopback 2
+ipv6 add face:cafe:face:cafe:0008::1/77
+int loopback 3
+ipv6 add face:cafe:face:cafe:0010::1/77
+int loopback 4
+ipv6 add face:cafe:face:cafe:0018::1/77
+int loopback 5
+ipv6 add face:cafe:face:cafe:0020::1/77
+int loopback 6
+ipv6 add face:cafe:face:cafe:0028::1/77
+int loopback 7
+ipv6 add face:cafe:face:cafe:0030::1/77
+int loopback 8
+ipv6 add face:cafe:face:cafe:0038::1/77
+int loopback 9
+ipv6 add face:cafe:face:cafe:0040::1/77
+int loopback 10
+ipv6 add face:cafe:face:cafe:0048::1/77
+
+VPNFEPH#show ipv6 int br
+GigabitEthernet1       [up/up]
+    unassigned
+GigabitEthernet2       [up/up]
+    unassigned
+GigabitEthernet3       [up/up]
+    unassigned
+Loopback1              [up/up]
+    FE80::21E:E6FF:FE93:1500
+    FACE:CAFE:FACE:CAFE::1
+    FAFA:CACA:DADA:BEBE::1
+Loopback2              [up/up]
+    FE80::21E:E6FF:FE93:1500
+    FACE:CAFE:FACE:CAFE:8::1
+    FAFA:CACA:DADA:BEBE:80::1
+Loopback3              [up/up]
+    FE80::21E:E6FF:FE93:1500
+    FACE:CAFE:FACE:CAFE:10::1
+    FAFA:CACA:DADA:BEBE:100::1
+Loopback4              [up/up]
+    FE80::21E:E6FF:FE93:1500
+    FACE:CAFE:FACE:CAFE:18::1
+    FAFA:CACA:DADA:BEBE:180::1
+Loopback5              [up/up]
+    FE80::21E:E6FF:FE93:1500
+    FACE:CAFE:FACE:CAFE:20::1
+    FAFA:CACA:DADA:BEBE:200::1
+Loopback6              [up/up]
+    FE80::21E:E6FF:FE93:1500
+    FACE:CAFE:FACE:CAFE:28::1
+    FAFA:CACA:DADA:BEBE:280::1
+Loopback7              [up/up]
+    FE80::21E:E6FF:FE93:1500
+    FACE:CAFE:FACE:CAFE:30::1
+    FAFA:CACA:DADA:BEBE:300::1
+Loopback8              [up/up]
+    FE80::21E:E6FF:FE93:1500
+    FACE:CAFE:FACE:CAFE:38::1
+    FAFA:CACA:DADA:BEBE:380::1
+Loopback9              [up/up]
+    FE80::21E:E6FF:FE93:1500
+    FACE:CAFE:FACE:CAFE:40::1
+Loopback10             [up/up]
+    FE80::21E:E6FF:FE93:1500
+    FACE:CAFE:FACE:CAFE:48::1
+VPNFEPH#
+VPNFEPH#
