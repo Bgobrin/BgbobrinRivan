@@ -1,0 +1,52 @@
+ip access-list ext bantayweb1
+permit tcp any host www.web8.com eq 80 log
+permit tcp any host www.web8.com eq 443 log
+permit tcp any host www.web8.com eq 22 log
+permit tcp any host www.web8.com eq 53 log
+
+int g 3
+ip access-group bantayweb1 in
+do sho ip access-l bantayweb1
+
+-------------------------------
+
+ip access-list ext blueteam2
+permit tcp any host www.web8.com eq 53 log
+permit tcp any host www.web8.com eq 22 log
+permit tcp any host www.web8.com eq 80 log
+permit tcp any host www.web9.com eq 23 log
+permit tcp any host www.web9.com eq 22 log
+permit tcp any host www.web9.com eq 443 log
+
+int g 3
+ip access-group blueteam2 in 
+do sho ip access-l blueteam2
+
+-------------------------------
+
+ip access-list ext blueteam3
+permit tcp any host www.web8.com eq 23 log
+permit tcp any host www.web8.com eq 22 log
+permit tcp any host www.web8.com eq 53 log
+permit tcp any host www.web8.com eq 80 log
+permit icmp any host www.web9.com log
+permit tcp any host www.web9.com eq 443 log
+
+int g 3
+ip access-group blueteam3 in 
+do sho ip access-l blueteam3
+
+-------------------------------
+
+ip access-list ext blueteam4
+permit tcp any host www.web8.com eq 19 log
+permit tcp any host www.web8.com eq 13 log
+permit tcp any host www.web8.com eq 79 log
+permit tcp any host www.web8.com eq 53 log
+permit icmp any host www.web9.com log
+permit tcp any host www.web9.com eq 53 log
+permit tcp any host www.web9.com eq 8080 log
+
+int g 3
+ip access-group blueteam4 in 
+do sho ip access-l blueteam4
