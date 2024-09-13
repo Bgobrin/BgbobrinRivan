@@ -495,7 +495,7 @@ COREBABA/GLOBE:
 config t
 hostname GLOBEITO
 Int vlan 1
-standby 1 ip 10.__.1.6
+standby 1 ip 10.31.1.6
 standby 1 preempt
 standby 1 Priority 100
 
