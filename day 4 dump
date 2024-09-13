@@ -145,3 +145,54 @@ ipv6 add fc00:abef:deef:0600::1/55
 int lo 5
 ip add 10.10.0.1 255.254.0.0
 ipv6 add fc00:abef:deef:0800::1/55
+
+------------------
+
+
+swit trun en dot
+swit mode tru
+swit trun all vla 1-100
+
+
+---------------------
+
+!A1
+
+int rang e0/1-2
+channel-group 1 mode desirable
+channel-proto pagp
+
+!A2
+
+int rang e0/1-2
+channel-group 1 mode active
+channel-proto lacp
+
+!D2
+
+int rang e1/2-3
+channel-group 1 mode active
+channel-proto lacp
+
+----------
+
+conf t
+ipv6 unicast-r
+int lo 1
+ip add 192.168.100.37 255.255.255.224
+ipv6 add bafa:bafa:fafa::1/54
+int lo 2
+ip add 192.168.100.65 255.255.255.224
+ipv6 add bafa:bafa:fafa:400::1/54
+int lo 3
+ip add 192.168.100.97 255.255.255.224
+ipv6 add bafa:bafa:fafa:800::1/54
+int lo 4
+ip add 192.168.100.129 255.255.255.224
+ipv6 add bafa:bafa:fafa:C00::1/54
+int lo 5
+ip add 192.168.100.161 255.255.255.224
+ipv6 add bafa:bafa:fafa:1000::1/54
+
+
+
